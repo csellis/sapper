@@ -1,14 +1,15 @@
 <script>
+  import { stores } from "@sapper/app";
+  const { session } = stores();
   import Profile from "./Profile.svelte";
-  import { currentUser } from "./../stores/user.js";
   import { onMount, tick } from "svelte";
-  // import { auth } from "../firebase";
-  // import { authState } from "rxfire/auth";
 
   let user;
 
   onMount(() => {
-    createLoginButton();
+    if (!$session.currentUser) {
+      createLoginButton();
+    }
   });
 
   // const unsubscribe = authState(auth).subscribe(u => (user = u));
@@ -61,7 +62,7 @@
   }
 </script>
 
-{#if $currentUser}
+{#if $session.currentUser}
   <button
     on:click={() => {
       signOut();

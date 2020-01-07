@@ -1,6 +1,7 @@
 <script>
+  import { stores } from "@sapper/app";
+  const { session } = stores();
   import Login from "../components/Login.svelte";
-  import { currentUser } from "./../stores/user.js";
 </script>
 
 <style>
@@ -45,7 +46,7 @@
 
 <h1 class="bg-gray-500">
   Great success
-  {#if $currentUser}{$currentUser.displayName}{/if}
+  {#if $session.currentUser}{$session.currentUser.displayName}{/if}
   !!!!
 </h1>
 <Login />
