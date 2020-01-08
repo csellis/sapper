@@ -1,5 +1,6 @@
 <script>
   export let segment;
+  let isNavOpen = false;
 
   import { onMount } from "svelte";
   import { stores } from "@sapper/app";
@@ -52,30 +53,61 @@
   }
 </style>
 
-<nav>
-  <ul>
-    <li>
-      <a class:selected={segment === undefined} href=".">home</a>
-    </li>
-    <li>
-      <a class:selected={segment === 'about'} href="about">about</a>
-    </li>
-
-    <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-    <li>
-      <a rel="prefetch" class:selected={segment === 'blog'} href="blog">blog</a>
-    </li>
-
+<header class="bg-gray-900">
+  <div class="flex items-center justify-between px-4 py-3">
+    <div />
+    <div>
+      <button
+        on:click={() => (isNavOpen = !isNavOpen)}
+        type="button"
+        class="text-gray-500 block hover:text-white focus:text-white
+        focus:outline-none">
+        <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
+          {#if isNavOpen}
+            <path
+              fill-rule="evenodd"
+              d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1
+              1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1
+              1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828
+              4.829 4.828 4.828z" />
+          {:else}
+            <path
+              v-if="!isOpen"
+              fill-rule="evenodd"
+              d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1
+              1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z" />
+          {/if}
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="px-2 pt-2 pb-4 {isNavOpen ? 'block' : 'hidden'}">
+    <a
+      class="py-1 block text-white font-semibold hover:bg-gray-800 rounded px-2"
+      href=".">
+      Home
+    </a>
+    <a
+      class="mt-1 py-1 block text-white font-semibold hover:bg-gray-800 rounded
+      px-2"
+      href="about">
+      About
+    </a>
+    <a
+      class="mt-1 py-1 block text-white font-semibold hover:bg-gray-800 rounded
+      px-2"
+      rel="prefetch"
+      href="blog">
+      Blog
+    </a>
     {#if $session.currentUser}
-      <li>
-        <a
-          rel="prefetch"
-          class={segment === 'dashboard' ? 'selected' : ''}
-          href="/dashboard">
-          dashboard
-        </a>
-      </li>
+      <a
+        rel="prefetch"
+        class="mt-1 py-1 block text-white font-semibold hover:bg-gray-800
+        rounded px-2"
+        href="/dashboard">
+        Dashboard
+      </a>
     {/if}
-  </ul>
-</nav>
+  </div>
+</header>
