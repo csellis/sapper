@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { stores } from "@sapper/app";
+  import { stores, goto } from "@sapper/app";
   const { session } = stores();
 
   onMount(() => {
@@ -16,6 +16,7 @@
         user.getIdToken().then(idToken => {
           sendTokenToServer(idToken, "csrfLaters");
         });
+        goto("dashboard");
       } else {
         // User is signed out.
         // currentUser.set(null);
@@ -25,6 +26,7 @@
         });
         clearCookiesOnServer("csrfLaters");
         console.log("Signed out");
+        goto(".");
       }
     });
   });
