@@ -5,19 +5,14 @@
 </script>
 
 <style>
-  main {
-    position: relative;
-    max-width: 56em;
-    background-color: white;
-    padding: 2em;
-    margin: 0 auto;
-    box-sizing: border-box;
-  }
+
 </style>
 
 <UserObserver />
-<Nav {segment} />
+<div class="flex flex-col min-h-screen">
+  <Nav {segment} />
 
-<main>
-  <slot />
-</main>
+  <main class="flex-1 flex flex-col">
+    <slot />
+  </main>
+</div>

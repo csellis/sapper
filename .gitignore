@@ -8,3 +8,4 @@ yarn-error.log
 variables.env
 /src/firebase.js
 /src/firebaseToken.js
+/src/initializeFirebase.js

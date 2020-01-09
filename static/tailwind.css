@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
+
+.navLink {
+    @apply py-1 block text-white font-semibold rounded px-2;
+}
+
+.navLink:hover {
+    @apply bg-gray-800;
+}
+
 @tailwind utilities;

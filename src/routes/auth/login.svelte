@@ -1,7 +1,9 @@
 <script>
   import Login from "../../components/Login.svelte";
+  import EmailLogin from "../../components/EmailLogin.svelte";
 </script>
 
-<div>
+<div class="bg-gray-200 flex items-center flex-col justify-center flex-grow">
+  <EmailLogin />
   <Login />
 </div>

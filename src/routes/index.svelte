@@ -1,7 +1,6 @@
 <script>
   import { stores } from "@sapper/app";
   const { session } = stores();
-  import Login from "../components/Login.svelte";
 </script>
 
 <style>
@@ -49,7 +48,7 @@
   {#if $session.currentUser}{$session.currentUser.displayName}{/if}
   !!!!
 </h1>
-<Login />
+
 <figure>
   <img alt="Borat" src="great-success.png" />
   <figcaption>HIGH FIVE!</figcaption>
