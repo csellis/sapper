@@ -26,7 +26,8 @@
         });
         clearCookiesOnServer("csrfLaters");
         console.log("Signed out");
-        goto(".");
+        // TODO: reactivate
+        // goto(".");
       }
     });
   });
