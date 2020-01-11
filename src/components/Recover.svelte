@@ -1,9 +1,11 @@
 <script>
   let email;
   let formState = "fresh";
+  let formErrorMessage = "";
 
   async function handleSubmit() {
-    await firebase
+    console.log(email);
+    const passwordSent = await firebase
       .auth()
       .sendPasswordResetEmail(email)
       .then(function() {
@@ -12,8 +14,11 @@
       .catch(function(error) {
         // An error happened.
         formState = error.code;
-        console.log(error);
+        formErrorMessage = error.message;
+        // console.log(error);
       });
+
+    console.log(passwordSent);
   }
 </script>
 
@@ -40,10 +45,8 @@
           id="email"
           type="email"
           placeholder="Email Address" />
-        {#if formState === 'auth/user-not-found'}
-          <p class="text-red-500 text-xs italic">
-            Please check your email address.
-          </p>
+        {#if formState.includes('email')}
+          <p class="text-red-500 text-xs italic">{formErrorMessage}</p>
         {/if}
       </div>
 

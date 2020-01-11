@@ -1,4 +1,5 @@
 <script>
+  import Login from "./Login.svelte";
   let email;
   let password;
   let formState = "fresh";
@@ -26,6 +27,20 @@
   }
 </script>
 
+<h2 class="text-3xl font-semibold mb-4 text-gray-700">
+  Log into Svelte Backpack
+</h2>
+
+<p>
+  Or
+  <a
+    class="inline-block align-baseline font-bold text-sm text-blue-500
+    hover:text-blue-600 mb-8"
+    href="auth/register">
+    Create an Account
+  </a>
+</p>
+
 <div class="w-full max-w-xs">
   <form
     on:submit|preventDefault={handleSubmit}
@@ -48,7 +63,7 @@
         </p>
       {/if}
     </div>
-    <div class="mb-6">
+    <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
         Password
       </label>
@@ -60,6 +75,7 @@
         id="password"
         type="password"
         placeholder="******************" />
+
       {#if formState === 'wrong-password'}
         <p class="text-red-500 text-xs italic">Your password was incorrect.</p>
       {/if}
@@ -67,22 +83,23 @@
     <div class="flex items-center justify-between">
       <button
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4
-        rounded focus:outline-none focus:shadow-outline"
+        rounded focus:outline-none focus:shadow-outline w-full"
         type="submit">
-        Sign In
+        Log In
       </button>
-      <a
-        class="inline-block align-baseline font-bold text-sm text-blue-500
-        hover:text-blue-800"
-        href="auth/register">
-        Register
-      </a>
-      <a
-        class="inline-block align-baseline font-bold text-sm text-blue-500
-        hover:text-blue-800"
-        href=".">
-        Forgot Password?
-      </a>
     </div>
   </form>
+</div>
+
+<p class="text-gray-700">or continue with</p>
+
+<Login />
+
+<div>
+  <a
+    class="inline-block align-baseline float-right text-sm text-gray-700
+    hover:text-gray-800 uppercase tracking-tight"
+    href="auth/recover">
+    Can't Log In?
+  </a>
 </div>
