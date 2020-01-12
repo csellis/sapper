@@ -40,7 +40,7 @@
 </style>
 
 <svelte:head>
-  <title>Sapper project template</title>
+  <title>Svelte Backpack</title>
 </svelte:head>
 
 <h1 class="bg-gray-500">

@@ -5,11 +5,22 @@
   const { session } = stores();
   import { media } from "../stores/media.js";
 
-  import LoginButtons from "./LoginButtons.svelte";
+  import AccountDropdown from "./AccountDropdown.svelte";
 
-  let isNavOpen = false;
+  let isNavOpen = true;
+
   function closeNav() {
     isNavOpen = false;
+  }
+
+  function signOut() {
+    firebase
+      .auth()
+      .signOut()
+      .then(async () => {})
+      .catch(error => {
+        alert(error);
+      });
   }
 </script>
 
@@ -44,29 +55,40 @@
     </div>
   </div>
 
-  {#if $media.sm}
+  <nav
+    transition:slide
+    on:click={() => closeNav()}
+    class="{isNavOpen ? 'block' : 'hidden'} sm:block">
     <div class="px-2 pt-2 pb-4 sm:flex">
       <a class="sm:mt-1 navLink" href=".">Home</a>
       <a class="mt-1 navLink" href="about">About</a>
       <a class="mt-1 navLink" rel="prefetch" href="blog">Blog</a>
-      {#if $session.currentUser}
-        <a rel="prefetch" class="mt-1 navLink" href="dashboard">Dashboard</a>
-      {/if}
-      <LoginButtons />
+      <AccountDropdown />
     </div>
-  {:else if isNavOpen}
-    <div
-      transition:slide
-      on:click={() => closeNav()}
-      class="px-2 pt-2 pb-4 {isNavOpen ? 'block' : 'hidden'} sm:flex">
-      <a class="sm:mt-1 navLink" href=".">Home</a>
-      <a class="mt-1 navLink" href="about">About</a>
-      <a class="mt-1 navLink" rel="prefetch" href="blog">Blog</a>
-      {#if $session.currentUser}
-        <a rel="prefetch" class="mt-1 navLink" href="dashboard">Dashboard</a>
-      {/if}
-      <LoginButtons />
-    </div>
-  {/if}
-
+    {#if $session.currentUser}
+      <div class="px-4 py-4 border-t border-gray-800 sm:hidden">
+        <div>
+          <span class="font-semibold text-white">
+            {$session.currentUser.email}
+          </span>
+        </div>
+        <div class="">
+          <a
+            class="mt-1 block text-gray-400 hover:text-white"
+            rel="prefetch"
+            href="dashboard">
+            Dashboard
+          </a>
+          <a
+            class="mt-1 block text-gray-400 hover:text-white"
+            href="."
+            on:click={() => {
+              signOut();
+            }}>
+            Logout
+          </a>
+        </div>
+      </div>
+    {/if}
+  </nav>
 </header>
