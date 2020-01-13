@@ -7,6 +7,8 @@
 
   import AccountDropdown from "./AccountDropdown.svelte";
 
+  export let segment;
+  console.log("segment", segment);
   let isNavOpen = true;
 
   function closeNav() {

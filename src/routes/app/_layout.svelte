@@ -1,7 +1,7 @@
 <script>
   import { fade } from "svelte/transition";
-  import Nav from "../components/Nav.svelte";
-  import UserObserver from "../components/UserObserver.svelte";
+  import Nav from "../../components/Nav.svelte";
+  import UserObserver from "../../components/UserObserver.svelte";
   export let segment;
 </script>
 
