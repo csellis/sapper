@@ -54,6 +54,7 @@
         class:border-red-500={formState === 'user-not-found'}
         class="shadow appearance-none border rounded w-full py-2 px-3
         text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        autocomplete="username"
         id="email"
         type="email"
         placeholder="Email" />
@@ -72,6 +73,7 @@
         class:border-red-500={formState === 'wrong-password'}
         class="shadow appearance-none border rounded w-full py-2 px-3
         text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+        autocomplete="current-password"
         id="password"
         type="password"
         placeholder="******************" />
