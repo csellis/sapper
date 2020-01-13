@@ -8,7 +8,7 @@ import admin from './firebase'
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
 
-express() // You can also use Express
+const app = express() // You can also use Express
 	.use(
 		cookieParser(),
 		bodyParser.json(),
@@ -44,7 +44,9 @@ express() // You can also use Express
 				currentUser: res.currentUser
 			})
 		})
-	)
-	.listen(PORT, err => {
+	);
+	app.listen(PORT, err => {
 		if (err) console.log('error', err);
 	});
+
+	export default app;
