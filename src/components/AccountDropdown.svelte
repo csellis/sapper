@@ -58,20 +58,8 @@
           rel="prefetch"
           class="text-gray-800 hover:bg-indigo-500 hover:text-white block px-4
           py-2"
-          href="dashboard">
+          href="app/dashboard">
           Dashboard
-        </a>
-        <a
-          class="text-gray-800 hover:bg-indigo-500 hover:text-white block px-4
-          py-2"
-          href=".">
-          Account
-        </a>
-        <a
-          class="text-gray-800 hover:bg-indigo-500 hover:text-white block px-4
-          py-2"
-          href=".">
-          Support
         </a>
         <a
           class="text-gray-800 hover:bg-indigo-500 hover:text-white block px-4

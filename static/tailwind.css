@@ -1,6 +1,18 @@
 @tailwind base;
 @tailwind components;
 
+.btn {
+    @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+}
+
+.btn:hover {
+    @apply bg-blue-700;
+}
+
+.landingLink {
+    @apply py-1 block rounded px-2;
+}
+
 .navLink {
     @apply py-1 block text-white font-semibold rounded px-2;
 }

@@ -13,10 +13,11 @@
           currentStore.currentUser = user;
           return currentStore;
         });
+
         user.getIdToken().then(idToken => {
           sendTokenToServer(idToken, "csrfLaters");
         });
-        goto("dashboard");
+        // goto("app/dashboard");
       } else {
         // User is signed out.
         // currentUser.set(null);

@@ -7,7 +7,7 @@
 
   import AccountDropdown from "./AccountDropdown.svelte";
 
-  let isNavOpen = true;
+  let isNavOpen = false;
 
   function closeNav() {
     isNavOpen = false;
@@ -22,13 +22,17 @@
         alert(error);
       });
   }
+
   console.log($session);
 </script>
 
 <header
-  class="bg-gray-900 sm:flex sm:justify-between sm:px-4 sm:py-3 sm:items-center">
-  <div class="flex items-center justify-between px-4 py-3 sm:p-0">
-    <div class="text-gray-500 uppercase text-xl tracking-wider font-medium">
+  class="container mx-auto sm:flex sm:justify-between sm:px-4 sm:py-3
+  sm:items-center bg-white shadow"
+  style="position: sticky; top: 0px;">
+  <div class="flex items-center justify-between sm:p-0">
+    <div
+      class="text-green-500 uppercase text-3xl tracking-wider font-extrabold">
       <a on:click={() => closeNav()} href=".">Svelte Backpack</a>
     </div>
     <div class="sm:hidden">
@@ -59,11 +63,16 @@
   <nav
     on:click={() => closeNav()}
     class="{isNavOpen ? 'block' : 'hidden'} sm:block">
-    <div class="px-2 pt-2 pb-4 sm:flex">
-      <a class="sm:mt-1 navLink" href=".">Home</a>
-      <a class="mt-1 navLink" href="about">About</a>
-      <a class="mt-1 navLink" rel="prefetch" href="blog">Blog</a>
-      <AccountDropdown />
+    <div class="px-2 pt-2 pb-4 sm:flex sm:items-center">
+      <a class="sm:mt-1 mr-2 landingLink" href=".">Pricing</a>
+
+      <a class="mt-1 mr-4 landingLink" href="auth/login">Login</a>
+      <a
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4
+        rounded"
+        href=".">
+        Join Beta
+      </a>
     </div>
     {#if $session.currentUser}
       <div class="px-4 py-4 border-t border-gray-800 sm:hidden">
