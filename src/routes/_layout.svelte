@@ -11,7 +11,7 @@
 {#if segment === 'app'}
   <div class="">
     <Nav />
-    <main class="flex-1 flex flex-col">
+    <main class="flex-1 flex flex-col z-30">
       <slot />
     </main>
   </div>
@@ -19,7 +19,7 @@
   <div class="bg-gray-100">
     <div class="">
       <LandingNav />
-      <main class="flex-1 flex flex-col sm:px-4">
+      <main class="flex-1 flex flex-col sm:px-4 z-30">
         <slot />
       </main>
     </div>
