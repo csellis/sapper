@@ -9,6 +9,6 @@
     ],
     "env": {
         "email_octopus_api_key": "@email_octopus_api_key",
-        "email_octopus_list_id": "@email_octopus_list_id",
+        "email_octopus_list_id": "@email_octopus_list_id"
     }
 }
