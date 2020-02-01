@@ -3,7 +3,7 @@
   "description": "TODO",
   "version": "0.0.1",
   "scripts": {
-    "dev": "sapper dev",
+    "dev": "dotenv sapper dev",
     "build": "npm run build:tailwind && sapper build",
     "export": "sapper export --legacy",
     "start": "node __sapper__/build",
