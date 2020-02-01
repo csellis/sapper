@@ -12,7 +12,6 @@ const app = express() // You can also use Express
 	.use(
 		cookieParser(),
 		bodyParser.json(),
-
 		compression({ threshold: 0 }),
 		sirv('static', { dev }),
 		(req, res, next) => {
@@ -45,6 +44,10 @@ const app = express() // You can also use Express
 			})
 		})
 	);
+
+		app.use(express.urlencoded());
+		app.use(express.json());
+
 	app.listen(PORT, err => {
 		if (err) console.log('error', err);
 	});

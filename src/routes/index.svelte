@@ -2,8 +2,28 @@
   import { stores } from "@sapper/app";
   const { session } = stores();
 
-  function handleSubmit() {
-    console.log("submitted");
+  let email = "";
+  let formState = "fresh";
+
+  export async function handleSubmit() {
+    formState = "sending";
+    const body = {
+      email
+    };
+    const response = await fetch("api/subscribe", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    });
+    const res = await response.json();
+
+    if (res.id || res.error.code === "MEMBER_EXISTS_WITH_EMAIL_ADDRESS") {
+      formState = "success";
+    }
+    console.log(res);
   }
 </script>
 
@@ -182,22 +202,44 @@
 </section>
 
 <section
+  class:hidden={formState === 'success'}
   class="container mx-auto sm:w-3/4 lg:w-1/2 sm:px-4 sm:py-8 mb-24 bg-white
   shadow text-gray-800 max-w-3xl">
   <div class="flex flex-col items-center justify-center">
     <h2 class="font-semibold text-3xl pt-12 pb-8">Ready to get started?</h2>
     <h3 class="text-xl pb-12">We will let you know when it's ready.</h3>
     <div class="">
-      <form on:submit|preventDefault={handleSubmit} class="flex items-baseline">
+      <form
+        on:submit|preventDefault={handleSubmit}
+        class="flex items-baseline"
+        method="post">
         <input
+          bind:value={email}
           class="appearance-none block w-full bg-gray-200 text-gray-700 border
           rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white
           mr-4"
           id="email"
           type="email"
           placeholder="email@example.com" />
-        <button type="submit" class="btn flex-shrink-0">Get in Beta</button>
+        <button
+          type="submit"
+          class="btn flex-shrink-0"
+          class:inactive={formState === 'sending'}>
+          Get in Beta
+        </button>
       </form>
     </div>
+  </div>
+</section>
+
+<section
+  class:hidden={formState !== 'success'}
+  class="container mx-auto sm:w-3/4 lg:w-1/2 sm:px-4 sm:py-8 mb-24 bg-white
+  shadow text-gray-800 max-w-3xl">
+  <div class="flex flex-col items-center justify-center">
+    <h2 class="font-semibold text-3xl pt-12 pb-8">
+      Thank you for your interest!
+    </h2>
+    <h3 class="text-xl pb-12">Look out for an email shortly.</h3>
   </div>
 </section>
