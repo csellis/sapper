@@ -3,25 +3,44 @@
   const { session } = stores();
 
   let email = "";
+  let botField = "";
   let formState = "fresh";
+  let formErrorMessage = "";
+
+  function wait(ms = 0) {
+    return new Promise(resolve => {
+      setTimeout(resolve, ms);
+    });
+  }
 
   export async function handleSubmit() {
     formState = "sending";
-    const body = {
-      email
-    };
-    const response = await fetch("api/subscribe", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    });
-    const res = await response.json();
+    // wait(10000);
+    if (botField.length > 0) {
+      console.log("Yous a bot!");
+      return;
+    }
 
-    if (res.id || res.error.code === "MEMBER_EXISTS_WITH_EMAIL_ADDRESS") {
-      formState = "success";
+    if (email === "") {
+      formState = "auth/email-missing";
+      formErrorMessage = "Please provide an email.";
+    } else {
+      const body = {
+        email
+      };
+      const response = await fetch("api/subscribe", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+      });
+      const res = await response.json();
+
+      if (res.id || res.error.code === "MEMBER_EXISTS_WITH_EMAIL_ADDRESS") {
+        formState = "success";
+      }
     }
     console.log(res);
   }
@@ -213,18 +232,32 @@
         on:submit|preventDefault={handleSubmit}
         class="flex items-baseline"
         method="post">
-        <input
-          bind:value={email}
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border
-          rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white
-          mr-4"
-          id="email"
-          type="email"
-          placeholder="email@example.com" />
+        <div class="mr-4">
+
+          <p class="hidden">
+            <label>
+              Don’t fill this out if you're human:
+              <input bind:value={botField} name="bot-field" />
+            </label>
+          </p>
+
+          <input
+            bind:value={email}
+            class:border-red-500={formState.includes('email')}
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border
+            rounded py-3 px-4 mb-3 leading-tight focus:outline-none
+            focus:bg-white"
+            id="email"
+            type="email"
+            placeholder="email@example.com" />
+          {#if formState.includes('email')}
+            <p class="text-red-500 text-xs italic">{formErrorMessage}</p>
+          {/if}
+        </div>
         <button
           type="submit"
           class="btn flex-shrink-0"
-          class:inactive={formState === 'sending'}>
+          class:cursor-not-allowed={formState === 'sending'}>
           Get in Beta
         </button>
       </form>
