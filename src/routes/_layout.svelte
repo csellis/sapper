@@ -5,6 +5,25 @@
   import Nav from "../components/Nav.svelte";
   import LandingNav from "../components/LandingNav.svelte";
   export let segment;
+
+  if (process.browser) {
+    const wave = String.fromCodePoint(0x1f44b);
+    const flame = String.fromCodePoint(0x1f525);
+
+    const welcomeStyle = [
+      "color: #48bb78",
+      "font-size: 1.875rem",
+      "font-weight: 800"
+    ].join(";");
+
+    const subStyle = ["font-size: 1.25rem", "font-weight: 500"].join(";");
+
+    console.log(`%cSvelte Backpack`, welcomeStyle);
+    console.log(
+      `%c${wave} Feel free to check out our source, but please don't flame ${flame}`,
+      subStyle
+    );
+  }
 </script>
 
 <UserObserver />
