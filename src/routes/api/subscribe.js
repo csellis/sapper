@@ -14,8 +14,14 @@ export async function post(req, res, next) {
   res.writeHead(200, {
     'Content-Type': 'application/json'
   });
+
+  console.log(req)
   
-  const { body } = req;
+  const { body, method } = req;
+
+  if(method !== "POST") {
+    res.end(JSON.stringify({ error: "This wasn't a post..." }))
+  }
 
   const request = {
     api_key: process.env.email_octopus_api_key,
@@ -23,8 +29,8 @@ export async function post(req, res, next) {
     status: "SUBSCRIBED",
   }
 
+  const emailOctopusListId = process.env.email_octopus_list_id;
 
-  const emailOctopusListId = process.env.email_octopus_list_id
   const emailOctopusRequest = `https://emailoctopus.com/api/1.5/lists/${emailOctopusListId}/contacts`;
   const emailOctopusParams = {
     method: 'POST',
@@ -40,5 +46,6 @@ export async function post(req, res, next) {
   if(json.status === "SUBSCRIBED") {
   }
   console.log(json)
+  // res.end(JSON.stringify(method));
   res.end(JSON.stringify(json));
 }
