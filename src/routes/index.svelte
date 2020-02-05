@@ -41,8 +41,8 @@
       if (res.id || res.error.code === "MEMBER_EXISTS_WITH_EMAIL_ADDRESS") {
         formState = "success";
       }
+      console.log(res);
     }
-    console.log(res);
   }
 </script>
 
@@ -221,6 +221,7 @@
 </section>
 
 <section
+  id="signup-form"
   class:hidden={formState === 'success'}
   class="container mx-auto sm:w-3/4 lg:w-1/2 sm:px-4 sm:py-8 mb-24 bg-white
   shadow text-gray-800 max-w-3xl">

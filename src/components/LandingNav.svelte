@@ -13,6 +13,12 @@
     isNavOpen = false;
   }
 
+  function handleScrollToForm() {
+    document.querySelector("#signup-form").scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+
   function signOut() {
     firebase
       .auth()
@@ -23,23 +29,24 @@
       });
   }
 
-  console.log($session);
+  // console.log($session);
 </script>
 
 <header
-  class="container mx-auto sm:flex sm:justify-between sm:px-4 sm:py-3
-  sm:items-center bg-white shadow z-50"
+  class="mx-auto sm:flex sm:justify-between sm:px-4 sm:py-3 sm:items-center
+  bg-white shadow z-50"
   style="position: sticky; top: 0px;">
-  <div class="flex items-center justify-between sm:p-0">
+  <div class="flex items-center justify-between p-4 sm:p-0">
     <div
-      class="text-green-500 uppercase text-3xl tracking-wider font-extrabold">
+      class="text-green-500 uppercase text-base sm:text-3xl tracking-wider
+      font-extrabold">
       <a on:click={() => closeNav()} href=".">Svelte Backpack</a>
     </div>
     <div class="sm:hidden">
       <button
         on:click={() => (isNavOpen = !isNavOpen)}
         type="button"
-        class="text-gray-500 block hover:text-white focus:text-white
+        class="text-gray-500 block hover:text-gray-700 focus:text-gray-700
         focus:outline-none">
         <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
           {#if isNavOpen}
@@ -63,33 +70,36 @@
   <nav
     on:click={() => closeNav()}
     class="{isNavOpen ? 'block' : 'hidden'} sm:block">
-    <div class="px-2 pt-2 pb-4 sm:flex sm:items-center">
-      <a class="sm:mt-1 mr-2 landingLink" href=".">Pricing</a>
-
-      <a class="mt-1 mr-4 landingLink" href="auth/login">Login</a>
-      <a
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4
-        rounded"
-        href=".">
-        Join Beta
-      </a>
-    </div>
     {#if $session.currentUser}
-      <div class="px-4 py-4 border-t border-gray-800 sm:hidden">
-        <div>
-          <span class="font-semibold text-white">
+      <div class="px-2 pt-2 pb-4 sm:flex sm:items-center">
+        <a
+          class="mt-1 mr-4 landingLink"
+          href="."
+          on:click={() => {
+            signOut();
+          }}>
+          Logout
+        </a>
+        <a
+          class="hidden sm:inline bg-white hover:bg-gray-100 text-gray-700
+          border border-gray-500 hover:border-gray-700 font-bold py-2 px-4
+          rounded"
+          href="app/dashboard"
+          rel="prefetch">
+          Dashboard
+        </a>
+      </div>
+
+      <div class="px-2 py-4 border-t border-gray-200 sm:hidden text-gray-800">
+        <div class="">
+          <span class="font-semibold landingLink">
             {$session.currentUser.email}
           </span>
-        </div>
-        <div class="">
-          <a
-            class="mt-1 block text-gray-400 hover:text-white"
-            rel="prefetch"
-            href="app/dashboard">
+          <a class="mt-1 block landingLink" rel="prefetch" href="app/dashboard">
             Dashboard
           </a>
           <a
-            class="mt-1 block text-gray-400 hover:text-white"
+            class="mt-1 block landingLink"
             href="."
             on:click={() => {
               signOut();
@@ -97,6 +107,19 @@
             Logout
           </a>
         </div>
+      </div>
+    {:else}
+      <div class="px-2 pt-2 pb-4 sm:flex sm:items-center">
+        <a class="sm:mt-1 mr-2 landingLink" href=".">Pricing</a>
+
+        <a class="mt-1 mr-4 landingLink" href="auth/login">Login</a>
+        <a
+          on:click|preventDefault={() => handleScrollToForm()}
+          class="hidden sm:inline sm:bg-blue-500 hover:bg-blue-700 text-white
+          font-bold py-2 px-4 rounded"
+          href=".">
+          Join Beta
+        </a>
       </div>
     {/if}
   </nav>
