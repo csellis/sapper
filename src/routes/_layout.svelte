@@ -40,7 +40,7 @@
   <div class="bg-gray-100">
     <div class="flex flex-col min-h-screen">
       <LandingNav />
-      <main class="flex-1 flex flex-col sm:px-4 z-30">
+      <main class="flex-1 flex flex-col z-30 sm:px-4 sm:py-3">
         <slot />
       </main>
 

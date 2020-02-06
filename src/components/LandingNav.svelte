@@ -1,8 +1,8 @@
 <script>
   import { onMount } from "svelte";
   import { fade, fly, slide } from "svelte/transition";
-  import { stores } from "@sapper/app";
-  const { session } = stores();
+  import { stores, goto } from "@sapper/app";
+  const { session, page } = stores();
   import { media } from "../stores/media.js";
 
   import AccountDropdown from "./AccountDropdown.svelte";
@@ -14,6 +14,9 @@
   }
 
   function handleScrollToForm() {
+    if ($page.path !== "/") {
+      goto("/");
+    }
     document.querySelector("#signup-form").scrollIntoView({
       behavior: "smooth"
     });
@@ -110,9 +113,7 @@
       </div>
     {:else}
       <div class="px-2 pt-2 pb-4 sm:flex sm:items-center">
-        <a class="sm:mt-1 mr-2 landingLink" href=".">Pricing</a>
-
-        <a class="mt-1 mr-4 landingLink" href="auth/login">Login</a>
+        <a class="sm:mt-1 mr-2 landingLink" href="videos">Videos</a>
         <a
           on:click|preventDefault={() => handleScrollToForm()}
           class="hidden sm:inline sm:bg-blue-500 hover:bg-blue-700 text-white
