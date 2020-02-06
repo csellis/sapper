@@ -53,11 +53,11 @@
     <h2 class="font-semibold text-2xl sm:text-3xl items-center">
       Create Svelte Apps Quickly,
       <br />
-      No Boilerplate
+      Use Our Boilerplate
     </h2>
     <h3 class="mt-8 text-lg sm:text-xl font-hairline">
-      Our package accelerates your Svelte product development, skipping all of
-      the boilerplate.
+      Our package accelerates your Svelte product development, skip making all
+      of the boilerplate.
     </h3>
   </div>
   <div class="pl-12">

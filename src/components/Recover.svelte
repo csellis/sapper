@@ -22,13 +22,13 @@
   }
 </script>
 
-<div class="bg-gray-200 flex items-center flex-col justify-center flex-grow">
+<div class="flex items-center flex-col justify-center flex-grow">
 
   <h2 class="text-3xl font-semibold mb-4 text-gray-700">
     Recover your Account
   </h2>
 
-  <p class="text-gray-500 mb-8">
+  <p class="text-gray-700 mb-8">
     Enter the email address you used to create your account
   </p>
 
