@@ -113,7 +113,6 @@
       </div>
     {:else}
       <div class="px-2 pt-2 pb-4 sm:flex sm:items-center">
-        <a class="sm:mt-1 mr-2 landingLink" href="videos">Videos</a>
         <a
           on:click|preventDefault={() => handleScrollToForm()}
           class="hidden sm:inline sm:bg-blue-500 hover:bg-blue-700 text-white

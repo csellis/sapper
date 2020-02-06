@@ -3,7 +3,7 @@
 </svelte:head>
 
 <section class="container mx-auto flex flex-col text-gray-800 px-4 py-4">
-  <div class="w-full sm:w-2/3 relative h-full">
+  <div class="w-full relative h-full">
     <div class="block h-auto w-full" style="padding-bottom: 56.25%;">
       <iframe
         title="Svelte playlist"
