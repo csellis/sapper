@@ -33,8 +33,8 @@
 </script>
 
 <header
-  class="mx-auto sm:flex sm:justify-between sm:px-4 sm:py-3 sm:items-center
-  bg-white shadow z-50"
+  class="container mx-auto sm:flex sm:justify-between sm:px-4 sm:py-3
+  sm:items-center bg-white shadow z-50"
   style="position: sticky; top: 0px;">
   <div class="flex items-center justify-between p-4 sm:p-0">
     <div

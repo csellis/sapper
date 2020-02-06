@@ -46,14 +46,16 @@
   }
 </script>
 
-<section class="flex text-gray-800 my-32 container mx-auto sm:px-4">
-  <div>
-    <h2 class="font-semibold text-3xl items-center">
+<section
+  class="container flex flex-col-reverse sm:flex-row text-gray-800 my-16
+  sm:my-32 mx-auto px-4">
+  <div class="my-8 sm:my-0">
+    <h2 class="font-semibold text-2xl sm:text-3xl items-center">
       Create Svelte Apps Quickly,
       <br />
       No Boilerplate
     </h2>
-    <h3 class="mt-8 text-xl font-hairline">
+    <h3 class="mt-8 text-lg sm:text-xl font-hairline">
       Our package accelerates your Svelte product development, skipping all of
       the boilerplate.
     </h3>
@@ -66,19 +68,20 @@
 </section>
 
 <section
-  class="grid grid-cols-3 gap-12 m-12 my-24 container mx-auto sm:px-4"
+  class="container mx-auto grid grid-cols-1 sm:grid-cols-3 gap-12 px-8 sm:my-24
+  sm:px-4 mb-8"
   style="filter: grayscale(50%)">
-  <div class="col-span-1">
+  <div class="grid-col-1">
     <img
       src="https://res.cloudinary.com/dkldjguam/image/upload/v1578826630/svelte-logo-horizontal.svg"
       alt="Svelte logo" />
   </div>
-  <div class="col-span-1">
+  <div class="grid-col-1">
     <img
       src="https://res.cloudinary.com/dkldjguam/image/upload/v1578827096/tailwind-logo.svg"
       alt="Tailwind logo" />
   </div>
-  <div class="col-span-1">
+  <div class="grid-col-1">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 943 220" fill="none">
       <g clip-path="url(#clip0)">
         <path
@@ -223,18 +226,17 @@
 <section
   id="signup-form"
   class:hidden={formState === 'success'}
-  class="container mx-auto sm:w-3/4 lg:w-1/2 sm:px-4 sm:py-8 mb-24 bg-white
+  class="container mx-auto sm:w-3/4 lg:w-1/2 sm:px-4 sm:py-8 m-8 mb-24 bg-white
   shadow text-gray-800 max-w-3xl">
   <div class="flex flex-col items-center justify-center">
     <h2 class="font-semibold text-3xl pt-12 pb-8">Ready to get started?</h2>
     <h3 class="text-xl pb-12">We will let you know when it's ready.</h3>
-    <div class="">
+    <div class="mb-16">
       <form
         on:submit|preventDefault={handleSubmit}
-        class="flex items-baseline"
+        class="flex flex-col sm:flex-row sm:items-center"
         method="post">
-        <div class="mr-4">
-
+        <div class="sm:mr-4 flex-1">
           <p class="hidden">
             <label>
               Don’t fill this out if you're human:
@@ -246,8 +248,7 @@
             bind:value={email}
             class:border-red-500={formState.includes('email')}
             class="appearance-none block w-full bg-gray-200 text-gray-700 border
-            rounded py-3 px-4 mb-3 leading-tight focus:outline-none
-            focus:bg-white"
+            rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
             id="email"
             type="email"
             placeholder="email@example.com" />
@@ -257,7 +258,7 @@
         </div>
         <button
           type="submit"
-          class="btn flex-shrink-0"
+          class="btn flex-shrink-0 py-2 px-4"
           class:cursor-not-allowed={formState === 'sending'}>
           Get in Beta
         </button>
