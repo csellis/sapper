@@ -234,7 +234,7 @@
     <div class="mb-16">
       <form
         on:submit|preventDefault={handleSubmit}
-        class="flex flex-col sm:flex-row sm:items-center"
+        class="flex flex-col sm:flex-row sm:items-baseline"
         method="post">
         <div class="sm:mr-4 flex-1">
           <p class="hidden">
